@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Experience</title>
+    <link href="/src/styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="text-white font-sans w-full h-screen bg-gradient-to-r from-red-500 to-black">
+    <!-- Card Container -->
+    <div class="relative overflow-hidden w-full h-full p-4 md:p-6">
+        <div class="absolute inset-0 bg-no-repeat opacity-20 h-auto w-auto md:max-w-full"
+            style="background-image: url('photos/black and blue.jpg'); background-position: center; background-size: cover;">
+        </div>
+
+        <!-- Navbar -->
+        <nav class="relative z-10">
+            <div class="absolute inset-0 "></div>
+            <div class="flex justify-between items-center px-6 py-4">
+                <!-- Logo -->
+                <div class="relative z-10">
+                    <div class="bg-white rounded-full p-1">
+                        <img src="photos/redheadset logo 3.jpeg" alt="Logo" class="w-14 h-14 rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <ul id="navLinks" class="hidden md:flex space-x-16 text-red-100 uppercase font-bold text-sm md:text-base">
+                    <li><a class="hover:text-white transition-colors duration-300" href="#">Home</a></li>
+                    <li><a class="hover:text-white transition-colors duration-300" href="#">About Us</a></li>
+                    <li><a class="hover:text-white transition-colors duration-300" href="#">Service</a></li>
+                    <li><a class="hover:text-white transition-colors duration-300" href="#">Contact</a></li>
+                </ul>
+
+                <!-- Hamburger Menu -->
+                <button id="menuToggle" class="md:hidden text-gray-400 hover:text-gray-200 focus:outline-none" title="Toggle Navigation Menu">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden flex flex-col items-center space-y-4 text-white bg-red-700 py-4 md:hidden">
+                <a href="#" class="hover:text-gray-300">Home</a>
+                <a href="#" class="hover:text-gray-300">About Us</a>
+                <a href="#" class="hover:text-gray-300">Service</a>
+                <a href="#" class="hover:text-gray-300">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="flex flex-col md:flex-row items-center justify-between px-4 md:px-6 py-4 space-y-6 md:space-y-0">
+            <!-- Left Panel -->
+            <div class="md:w-1/2 text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 font-sans">
+                    Sonic Excellence.
+                </h1>
+                <p class="text-white md:text-3xl font-semibold leading-relaxed mb-4">
+                    Immerse Yourself in Pure Sound  
+                    Step into a world where every note is crisp, every bassline thrums with power, and every whisper feels intimate.  
+                    Whether you're a music lover, gamer, or audiophile, our premium audio collection delivers studio-quality sound to your ears.
+                    <br><br>
+                     Unleash Your Passion for Music
+                </p>
+                <div class="flex flex-col md:flex-row justify-center md:justify-start space-y-4 md:space-x-4">
+                    <a href="#" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">Shop Now</a>
+                    <a href="#" class="bg-transparent border border-white text-white font-bold py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="md:w-1/2 flex justify-center relative">
+                <img src="photos/black_and_blue-removebg-preview.png" alt="Hero Image"
+                    class="w-auto h-auto rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById("menuToggle").addEventListener("click", function() {
+            let mobileMenu = document.getElementById("mobileMenu");
+            if (mobileMenu.classList.contains("hidden")) {
+                mobileMenu.classList.remove("hidden");
+                mobileMenu.classList.add("flex");
+            } else {
+                mobileMenu.classList.add("hidden");
+                mobileMenu.classList.remove("flex");
+            }
+        });
+    </script>
+</body>
+</html>

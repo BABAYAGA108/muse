@@ -1,0 +1,47 @@
+body{
+    margin: 0%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: palegoldenrod;
+}
+.navbar{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: rgb(95, 71, 25);
+    font-family:'Times New Roman', Times, serif;
+}
+.navdiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo a {
+    font-size: 20px;
+    color:rgb(7, 7, 8)
+}
+container {
+    font-weight: 200;
+    color: black;
+    display: inline-block;
+}
+li {display:inline-block;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 25px;
+}
+li a {
+    color: #ddd;
+}
+button {
+    background-color:rgb(165, 147, 80); 
+    margin-left: auto;
+    border-radius: 60px; 
+    padding: 10px;
+    width: 90px;
+}
+button a {
+    color: white;
+    font-weight: bold; 
+    font-size: 15px;
+}
