@@ -5,6 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Edge",
+            "request": "launch",
+            "type": "msedge",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+
+        {
             "name": "Launch Edge Debugging",
             "request": "launch",
             "type": "msedge",
@@ -40,7 +48,7 @@
         "webRoot": "${workspaceFolder}"
     },
         {
-            "type": "web app(edge)",
+            "type": "chrome",
             "request": "launch",
             "name": "we",
             "url": "http://localhost:8080",

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Experience</title>
+    <title>Sonic Excellence</title>
     <link href="/src/styles.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
@@ -43,7 +43,7 @@
             </div>
 
             <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden flex flex-col items-center space-y-4 text-white bg-red-700 py-4 md:hidden">
+            <div id="mobileMenu" class="hidden flex-col items-center space-y-4 text-white bg-red-700 py-4">
                 <a href="#" class="hover:text-gray-300">Home</a>
                 <a href="#" class="hover:text-gray-300">About Us</a>
                 <a href="#" class="hover:text-gray-300">Service</a>
@@ -52,7 +52,7 @@
         </nav>
 
         <!-- Hero Section -->
-        <section class="flex flex-col md:flex-row items-center justify-between px-4 md:px-6 py-4 space-y-6 md:space-y-0">
+        <section class="flex flex-col-reverse min-h-max first-letter: md:flex-row items-center justify-between px-4 md:px-6 py-4 space-y-6 md:space-y-0">
             <!-- Left Panel -->
             <div class="md:w-1/2 text-center md:text-left">
                 <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 font-sans">
@@ -65,7 +65,7 @@
                     <br><br>
                      Unleash Your Passion for Music
                 </p>
-                <div class="flex flex-col md:flex-row justify-center md:justify-start space-y-4 md:space-x-4">
+                <div class="flex flex-col md:flex-row justify-center md:justify-start space-y-4 md:space-x-4 ">
                     <a href="#" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">Shop Now</a>
                     <a href="#" class="bg-transparent border border-white text-white font-bold py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">Learn More</a>
                 </div>
@@ -81,16 +81,13 @@
 
     <!-- JavaScript -->
     <script>
-        document.getElementById("menuToggle").addEventListener("click", function() {
-            let mobileMenu = document.getElementById("mobileMenu");
-            if (mobileMenu.classList.contains("hidden")) {
-                mobileMenu.classList.remove("hidden");
-                mobileMenu.classList.add("flex");
-            } else {
-                mobileMenu.classList.add("hidden");
-                mobileMenu.classList.remove("flex");
-            }
+        // Toggle mobile menu visibility
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
+        // Close mobile menu when a link is clicked
     </script>
 </body>
 </html>
