@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sonic Excellence</title>
     <link href="/src/styles.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Fallback for hidden class */
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="text-white font-sans w-full h-screen bg-gradient-to-r from-red-500 to-black">
     <!-- Card Container -->
-    <div class="relative overflow-hidden w-full h-full p-4 md:p-6">
+    <div class="relative w-full h-full p-4 md:p-6 md:overflow-auto">
+        <!-- Background Image -->
         <div class="absolute inset-0 bg-no-repeat opacity-20 h-auto w-auto md:max-w-full"
             style="background-image: url('photos/black and blue.jpg'); background-position: center; background-size: cover;">
         </div>
 
         <!-- Navbar -->
         <nav class="relative z-10">
-            <div class="absolute inset-0 "></div>
             <div class="flex justify-between items-center px-6 py-4">
                 <!-- Logo -->
                 <div class="relative z-10">
@@ -35,7 +41,7 @@
                 </ul>
 
                 <!-- Hamburger Menu -->
-                <button id="menuToggle" class="md:hidden text-gray-400 hover:text-gray-200 focus:outline-none" title="Toggle Navigation Menu">
+                <button id="menuToggle" aria-controls="mobileMenu" class="md:hidden text-gray-400 hover:text-gray-200 focus:outline-none" title="Toggle Navigation Menu">
                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -52,7 +58,7 @@
         </nav>
 
         <!-- Hero Section -->
-        <section class="flex flex-col-reverse min-h-max first-letter: md:flex-row items-center justify-between px-4 md:px-6 py-4 space-y-6 md:space-y-0">
+        <section class="flex flex-col-reverse min-h-max md:flex-row items-center justify-between px-4 md:px-6 py-4 space-y-6 md:space-y-0">
             <!-- Left Panel -->
             <div class="md:w-1/2 text-center md:text-left">
                 <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 font-sans">
@@ -65,7 +71,7 @@
                     <br><br>
                      Unleash Your Passion for Music
                 </p>
-                <div class="flex flex-col md:flex-row justify-center md:justify-start space-y-4 md:space-x-4 ">
+                <div class="flex flex-col md:flex-row justify-center md:justify-start space-y-4 md:space-x-4">
                     <a href="#" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">Shop Now</a>
                     <a href="#" class="bg-transparent border border-white text-white font-bold py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">Learn More</a>
                 </div>
@@ -81,13 +87,38 @@
 
     <!-- JavaScript -->
     <script>
-        // Toggle mobile menu visibility
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        // Wait for DOM to load before executing
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuLinks = mobileMenu.querySelectorAll('a'); // All menu links
+
+            // Toggle menu visibility
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+                menuToggle.setAttribute('aria-expanded', 
+                    mobileMenu.classList.contains('hidden') ? 'false' : 'true');
+            });
+
+            // Close menu when a link is clicked (for single-page navigation)
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Close menu when clicking outside (optional)
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
         });
-        // Close mobile menu when a link is clicked
     </script>
 </body>
 </html>
