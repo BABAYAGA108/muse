@@ -7,19 +7,27 @@
     <link href="/src/styles.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Fallback for hidden class */
-        .hidden {
-            display: none;
+        /* Smooth mobile menu animation */
+        #mobileMenu {
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #mobileMenu.open {
+            max-height: 500px;
+        }
+        
+        /* Fix for contact section positioning */
+        #contact-section {
+            position: relative;
+            z-index: 5;
         }
     </style>
 </head>
-<body class="text-white font-sans w-full min-h-screen bg-gradient-to-r from-red-500 to-black overflow-x-hidden scroll- scroll-smooth">
-
-
-    
+<body class="text-white font-sans w-full min-h-screen bg-gradient-to-r from-red-500 to-black overflow-x-hidden">
 
     <!-- Card Container -->
-    <div class="relative w-full h-full p-4 md:p-6 md:overflow-auto">
+    <div class="relative w-full h-full p-4 md:p-6">
         <!-- Background Image -->
         <div class="absolute inset-0 bg-no-repeat opacity-20 h-auto w-auto md:max-w-full"
             style="background-image: url('photos/black and blue.jpg'); background-position: center; background-size: cover;">
@@ -27,7 +35,6 @@
 
         <!-- Navbar -->
         <nav role="navigation" class="relative z-10">
-
             <div class="flex justify-between items-center px-6 py-4">
                 <!-- Logo -->
                 <div class="relative z-10">
@@ -39,25 +46,28 @@
                 <!-- Desktop Navigation -->
                 <ul id="navLinks" class="hidden md:flex space-x-16 text-red-100 uppercase font-bold text-sm md:text-base">
                     <li><a class="hover:text-white transition-colors duration-300" href="#">Home</a></li>
-                    <li><a class="hover:text-white transition-colors duration-300" href="#" id=aboutus-link>About Us</a></li>
-                    <li><a class="hover:text-white transition-colors duration-300" href="#" id="service link">Service</a></li>
-                    <li><a class="hover:text-white transition-colors duration-300" href="#" id="contact-link">Contact</a></li>
+                    <li><a class="hover:text-white transition-colors duration-300" href="#about">About Us</a></li>
+                    <li><a class="hover:text-white transition-colors duration-300" href="#service">Service</a></li>
+                    <li><a class="contact-link hover:text-white transition-colors duration-300" href="#contact">Contact</a></li>
                 </ul>
 
                 <!-- Hamburger Menu -->
-                <button id="menuToggle" aria-controls="mobileMenu" class="md:hidden text-gray-400 hover:text-gray-200 focus:outline-none" title="Toggle Navigation Menu">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                <button id="menuToggle" aria-controls="mobileMenu" class="md:hidden text-gray-400 hover:text-gray-200 focus:outline-none z-20">
+                    <svg id="menuIcon" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <svg id="closeIcon" class="w-8 h-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
                 </button>
             </div>
 
             <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden flex-col items-center space-y-4 text-white bg-red-700 py-4">
-                <a href="#" class="hover:text-gray-300">Home</a>
-                <a href="#" class="hover:text-gray-300">About Us</a>
-                <a href="#" class="hover:text-gray-300">Service</a>
-                <a href="#" class="hover:text-gray-300">Contact</a>
+            <div id="mobileMenu" class="md:hidden flex flex-col items-center space-y-4 text-white bg-gradient-to-b from-red-900/95 to-black/95 w-full left-0 absolute z-10">
+                <a href="#" class="w-full text-center py-3 hover:bg-red-600 transition-colors duration-300">Home</a>
+                <a href="#about" class="w-full text-center py-3 hover:bg-red-600 transition-colors duration-300">About Us</a>
+                <a href="#service" class="w-full text-center py-3 hover:bg-red-600 transition-colors duration-300">Service</a>
+                <a href="#contact" class="contact-link w-full text-center py-3 hover:bg-red-600 transition-colors duration-300">Contact</a>
             </div>
         </nav>
 
@@ -86,76 +96,90 @@
                 <img src="photos/black_and_blue-removebg-preview.png" alt="Hero Image"
                     class="w-auto h-auto rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
             </div>
-            <!-- Contact Section with ID (Hidden by defualt) -->
-                <section id="contact-section" class="hidden py-16 px-6 bg-gradient-to-r from-black to-red-500">
-                    <div class="max-w-screen-xl mx-auto text-center">
-                        <div class="flex justify-center items-center mb-8">
-                            <!-- Logo -->
-                            <img src="photos/redheadset logo 3.jpeg" alt="Logo" class="w-12 h-12 rounded-full mr-4">
-                            <!-- Title -->
-                            <h2 class="text-3xl md:text-4xl font-extrabold text-white">Contact Us</h2>
-                        </div>
-                        <p class="text-lg md:text-xl text-white leading-relaxed mb-8">
-                            We'd love to hear from you! Whether you have questions, feedback, or inquiries, feel free to reach out to us.
-                        </p>
-                        <form class="space-y-6 max-w-lg mx-auto" action="#" method="POST">
-                            <input type="text" placeholder="Your Name" class="w-full p-4 rounded-lg border-2 border-white bg-transparent text-white placeholder-white focus:outline-none" required>
-                            <input type="email" placeholder="Your Email" class="w-full p-4 rounded-lg border-2 border-white bg-transparent text-white placeholder-white focus:outline-none" required>
-                            <textarea placeholder="Your Message" rows="6" class="w-full p-4 rounded-lg border-2 border-white bg-transparent text-white placeholder-white focus:outline-none" required></textarea>
-                            <button type="submit" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 w-full md:w-auto mx-auto">Send Message</button>
-                        </form>
-                    </div>
-                </section>
+        </section>
 
+        <!-- Contact Section -->
+        <section id="contact-section" class="hidden py-16 px-6 bg-gradient-to-r from-black to-red-500">
+            <div class="max-w-screen-xl mx-auto text-center">
+                <div class="flex justify-center items-center mb-8">
+                    <img src="photos/redheadset logo 3.jpeg" alt="Logo" class="w-12 h-12 rounded-full mr-4">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-white">Contact Us</h2>
+                </div>
+                <p class="text-lg md:text-xl text-white leading-relaxed mb-8">
+                    We'd love to hear from you! Whether you have questions, feedback, or inquiries, feel free to reach out to us.
+                </p>
+                <form class="space-y-6 max-w-lg mx-auto" action="#" method="POST">
+                    <input type="text" placeholder="Your Name" class="w-full p-4 rounded-lg border-2 border-white bg-transparent text-white placeholder-white focus:outline-none" required>
+                    <input type="email" placeholder="Your Email" class="w-full p-4 rounded-lg border-2 border-white bg-transparent text-white placeholder-white focus:outline-none" required>
+                    <textarea placeholder="Your Message" rows="6" class="w-full p-4 rounded-lg border-2 border-white bg-transparent text-white placeholder-white focus:outline-none" required></textarea>
+                    <button type="submit" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 w-full md:w-auto mx-auto">Send Message</button>
+                </form>
+            </div>
         </section>
     </div>
 
     <!-- JavaScript -->
     <script>
-        // Wait for DOM to load before executing
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
             const menuToggle = document.getElementById('menuToggle');
             const mobileMenu = document.getElementById('mobileMenu');
-            const menuLinks = mobileMenu.querySelectorAll('a'); // All menu links
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            const menuLinks = document.querySelectorAll('.contact-link');
+            const contactSection = document.getElementById('contact-section');
 
-            // Toggle menu visibility
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                mobileMenu.classList.toggle('flex');
-                menuToggle.setAttribute('aria-expanded', 
-                    mobileMenu.classList.contains('hidden') ? 'false' : 'true');
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = mobileMenu.classList.toggle('open');
+                
+                // Toggle icons
+                menuIcon.classList.toggle('hidden', isOpen);
+                closeIcon.classList.toggle('hidden', !isOpen);
+                
+                // Update aria attributes
+                menuToggle.setAttribute('aria-expanded', isOpen);
             });
 
-            // Close menu when a link is clicked (for single-page navigation)
+            // Close menu when link is clicked
             menuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex');
+                link.addEventListener('click', (e) => {
+                    // Handle contact link separately
+                    if (link.classList.contains('contact-link')) {
+                        e.preventDefault();
+                        contactSection.classList.toggle('hidden');
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    // Close mobile menu
+                    mobileMenu.classList.remove('open');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
                     menuToggle.setAttribute('aria-expanded', 'false');
                 });
             });
 
-            // Close menu when clicking outside (optional)
+            // Close menu when clicking outside
             document.addEventListener('click', (e) => {
                 if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.remove('open');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    mobileMenu.classList.remove('open');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
                     menuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
         });
-    
-        document.addEventListener('DOMContentLoaded', () => {
-            const contactLink = document.getElementById('contact-link');
-            const contactSection = document.getElementById('contact-section');
-
-            // Toggle the visibility of the Contact Us section when the Contact link is clicked
-            contactLink.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent default link behavior
-                contactSection.classList.toggle('hidden'); // Toggle the visibility of the section
-            });
-        });
-
     </script>
 </body>
 </html>
